@@ -1,0 +1,100 @@
+.pageWrapper {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 90px; /* Space for mobile nav & dev bar */
+}
+
+.mainContainer {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Top Hero + Next Reward Grid (Desktop multi-column reference #26) */
+.topSectionGrid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 8px;
+}
+
+.heroColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.rewardColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mid Section Grid: Play & Earn (Left) + XP Activity (Right) */
+.midSectionGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 12px;
+}
+
+.gameColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.activityColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.earnSectionContainer {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.errorContainer {
+  width: 100%;
+  padding: 40px 0;
+}
+
+/* Responsive Layout Breakpoints */
+@media (max-width: 1120px) {
+  .topSectionGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .midSectionGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContainer {
+    padding: 16px 14px 40px;
+    gap: 4px;
+  }
+
+  .topSectionGrid {
+    gap: 12px;
+  }
+
+  .midSectionGrid {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .mainContainer {
+    padding: 12px 10px 40px;
+  }
+}

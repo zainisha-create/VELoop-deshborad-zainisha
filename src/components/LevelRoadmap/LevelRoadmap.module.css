@@ -1,0 +1,369 @@
+.roadmapSection {
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badgePill {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--gold-primary);
+  background: rgba(245, 197, 24, 0.12);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.heading {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scrollControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.scrollBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--surface-border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.scrollBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.scrollBtn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Scroller and Progression Track */
+.scrollerOuter {
+  position: relative;
+  width: 100%;
+  background: var(--surface-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 34px 20px 24px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.trackContainer {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  overflow-x: auto;
+  padding: 10px 10px 14px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.trackContainer::-webkit-scrollbar {
+  height: 6px;
+}
+
+.conduitLine {
+  position: absolute;
+  top: 94px;
+  left: 40px;
+  right: 40px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #10B981 0%,
+    #10B981 40%,
+    var(--gold-primary) 50%,
+    rgba(255, 255, 255, 0.1) 60%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Level Node */
+.levelNode {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 140px;
+  cursor: pointer;
+  transition: transform var(--transition-bounce);
+  padding: 6px;
+  border-radius: var(--radius-md);
+}
+
+.levelNode:hover {
+  transform: translateY(-4px);
+}
+
+.nodeSelected {
+  background: rgba(245, 197, 24, 0.06);
+  border: 1px solid rgba(245, 197, 24, 0.3);
+}
+
+.tagWrapper {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.currentTag {
+  position: relative;
+  background: var(--gold-gradient);
+  color: #121424;
+  font-family: var(--font-heading);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 12px rgba(245, 197, 24, 0.5);
+  animation: pulseSubtle 2s infinite ease-in-out;
+}
+
+.tagArrow {
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  background: #C99824;
+}
+
+.nextTag {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--gold-light);
+  background: rgba(245, 197, 24, 0.12);
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+}
+
+.completedTag {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--emerald-light);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+}
+
+.lockedTag {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+.badgeWrapper {
+  margin-bottom: 10px;
+}
+
+.nodeMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.nodeTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.nodeXP {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.rewardChip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--surface-border);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  text-align: center;
+}
+
+.rewardAmount {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.bonusChip {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--purple-light);
+}
+
+/* Details Drawer */
+.detailsDrawer {
+  margin-top: 14px;
+  background: #1C203A;
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  animation: fadeIn 200ms ease;
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.drawerTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.drawerLevelPill {
+  font-size: 11px;
+  font-weight: 800;
+  background: var(--gold-gradient);
+  color: #121424;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.drawerTitle {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.closeDrawerBtn {
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 4px;
+}
+
+.closeDrawerBtn:hover {
+  color: var(--text-primary);
+}
+
+.drawerContentGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.drawerInfoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drawerLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.drawerValue {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.drawerValueGold {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.statusBadge {
+  font-size: 11px;
+  font-weight: 700;
+  width: fit-content;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.statusBadge.current {
+  background: rgba(245, 197, 24, 0.15);
+  color: var(--gold-primary);
+}
+
+.statusBadge.completed {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--emerald-light);
+}
+
+.statusBadge.next {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--blue-light);
+}
+
+.statusBadge.locked {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+  .drawerContentGrid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}

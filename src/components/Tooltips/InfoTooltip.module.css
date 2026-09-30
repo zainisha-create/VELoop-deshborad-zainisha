@@ -1,0 +1,136 @@
+.tooltipContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.infoTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 2px;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.infoTrigger:hover,
+.infoTrigger:focus-visible {
+  color: var(--gold-primary);
+  transform: scale(1.1);
+}
+
+.sm .infoIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.md .infoIcon {
+  width: 17px;
+  height: 17px;
+}
+
+.tooltipBubble {
+  position: absolute;
+  z-index: 999;
+  width: max-content;
+  max-width: 270px;
+  background: #1E223D;
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 15px rgba(245, 197, 24, 0.15);
+  animation: popIn 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tooltipTitle {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gold-light);
+  margin-bottom: 4px;
+}
+
+.tooltipText {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #E2E8F0;
+  margin: 0;
+  white-space: normal;
+}
+
+/* Placements */
+.top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Arrows */
+.arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #1E223D;
+  transform: rotate(45deg);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+}
+
+.top .arrow {
+  bottom: -5px;
+  left: calc(50% - 4px);
+  border-top: none;
+  border-left: none;
+}
+
+.bottom .arrow {
+  top: -5px;
+  left: calc(50% - 4px);
+  border-bottom: none;
+  border-right: none;
+}
+
+@media (max-width: 480px) {
+  .tooltipBubble {
+    max-width: 220px;
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+}

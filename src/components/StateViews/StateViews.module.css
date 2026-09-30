@@ -1,0 +1,108 @@
+.stateCard {
+  background: var(--surface-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 520px;
+  margin: 32px auto;
+  box-shadow: var(--shadow-card);
+}
+
+.iconCircleError {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--coral-accent);
+}
+
+.iconCircleEmpty {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(245, 197, 24, 0.08);
+  border: 1px solid rgba(245, 197, 24, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--gold-primary);
+}
+
+.errorIcon,
+.emptyIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.message {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 24px;
+  max-width: 400px;
+}
+
+.retryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold-gradient);
+  color: #161827;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 15px rgba(245, 197, 24, 0.35);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.retryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 197, 24, 0.5);
+}
+
+.actionButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 197, 24, 0.15);
+  color: var(--gold-light);
+  border: 1px solid rgba(245, 197, 24, 0.4);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+}
+
+.actionButton:hover {
+  background: var(--gold-gradient);
+  color: #161827;
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+.btnIcon {
+  width: 16px;
+  height: 16px;
+}

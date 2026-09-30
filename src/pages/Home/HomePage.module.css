@@ -1,0 +1,614 @@
+.homeContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* 1. Welcome Hero */
+.welcomeHero {
+  position: relative;
+  background: var(--surface-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--surface-border-gold);
+  border-radius: var(--radius-xl);
+  padding: 30px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.heroBackgroundAura {
+  position: absolute;
+  top: -60px;
+  right: -40px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.15) 0%, rgba(147, 51, 234, 0.08) 60%, transparent 80%);
+  filter: blur(35px);
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.userGreetingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.greetingTextGroup {
+  flex: 1;
+  min-width: 280px;
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 197, 24, 0.1);
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: var(--gold-light);
+  margin-bottom: 10px;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  box-shadow: 0 0 8px var(--gold-primary);
+}
+
+.welcomeTitle {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.welcomeSubtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 540px;
+  line-height: 1.5;
+}
+
+.badgeShowcase {
+  flex-shrink: 0;
+}
+
+/* Balances Glance Row */
+.balancesGlanceRow {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 14px;
+  background: rgba(18, 20, 36, 0.6);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  align-items: center;
+}
+
+.balanceGlanceCard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.balanceLabel {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.balanceValueRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.balanceBigValue {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.balanceChangePositive {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--emerald-light);
+}
+
+.miniAssetPill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--surface-border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.miniAssetPill:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(245, 197, 24, 0.3);
+  transform: translateY(-1px);
+}
+
+.assetIconGold {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  color: #121424;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.assetIconPurple {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(147, 51, 234, 0.2);
+  border: 1px solid rgba(147, 51, 234, 0.4);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.assetIconBlue {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  color: var(--blue-light);
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.miniAssetPill strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.1;
+}
+
+.miniAssetPill span {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* 2. Streak Section */
+.streakSection {
+  background: var(--surface-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+}
+
+.sectionTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.titleWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fireEmoji {
+  font-size: 24px;
+  filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.6));
+}
+
+.sectionHeading {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.sectionSub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.streakStatusBadge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--coral-accent);
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.claimedToast {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: var(--emerald-light);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  margin-bottom: 14px;
+  width: fit-content;
+}
+
+.streakGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.streakDayCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 12px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.dayLabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.dayIcon {
+  font-size: 16px;
+}
+
+.dayRewardText {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.dayClaimed {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.dayClaimed .dayRewardText {
+  color: var(--emerald-light);
+}
+
+.claimedBadge {
+  font-size: 8px;
+  font-weight: 800;
+  color: var(--emerald-light);
+  background: rgba(16, 185, 129, 0.15);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.dayCurrent {
+  border-color: var(--gold-primary);
+  background: rgba(245, 197, 24, 0.1);
+  box-shadow: 0 0 14px rgba(245, 197, 24, 0.25);
+}
+
+.streakCtaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.claimStreakBtn {
+  background: var(--gold-gradient);
+  color: #121424;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(245, 197, 24, 0.35);
+  transition: transform var(--transition-fast);
+}
+
+.claimStreakBtn:disabled {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.streakTimer {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* 3. Quick Action Hub */
+.quickActionSection {
+  width: 100%;
+}
+
+.quickActionsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.actionTile {
+  background: var(--surface-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: all var(--transition-bounce);
+}
+
+.actionTile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.tileGold:hover { border-color: rgba(245, 197, 24, 0.4); }
+.tileEmerald:hover { border-color: rgba(16, 185, 129, 0.4); }
+.tilePurple:hover { border-color: rgba(147, 51, 234, 0.4); }
+.tileBlue:hover { border-color: rgba(37, 99, 235, 0.4); }
+
+.tileIcon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.tileInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tileInfo strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.tileInfo span {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.tileArrow {
+  font-size: 16px;
+  color: var(--text-muted);
+  transition: transform var(--transition-fast);
+}
+
+.actionTile:hover .tileArrow {
+  color: #FFFFFF;
+  transform: translateX(3px);
+}
+
+/* 4. Spotlight Quests */
+.questsSection {
+  width: 100%;
+}
+
+.viewAllBtn {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.questsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.questCard {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.questCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.questHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.questIconBox {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.icon_blue { background: rgba(37, 99, 235, 0.15); }
+.icon_emerald { background: rgba(16, 185, 129, 0.15); }
+.icon_gold { background: rgba(245, 197, 24, 0.15); }
+
+.questRewardPill {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--gold-light);
+  background: rgba(245, 197, 24, 0.1);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.questTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.questSubtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.questProgressRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--surface-border-subtle);
+  padding-top: 8px;
+  margin-top: auto;
+}
+
+.questActionText {
+  color: var(--gold-primary);
+  font-weight: 700;
+}
+
+/* 5. Live Activity Ticker */
+.liveFeedSection {
+  width: 100%;
+}
+
+.liveFeedCard {
+  background: rgba(18, 20, 36, 0.8);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-full);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.liveIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--emerald-light);
+}
+
+.livePulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--emerald-accent);
+  box-shadow: 0 0 8px var(--emerald-accent);
+}
+
+.tickerTrack {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.tickerItem {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.tickerSeparator {
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .balancesGlanceRow {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .quickActionsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .questsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .welcomeHero {
+    padding: 20px 16px;
+  }
+  .welcomeTitle {
+    font-size: 22px;
+  }
+  .balancesGlanceRow {
+    grid-template-columns: 1fr;
+  }
+  .streakGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .quickActionsGrid {
+    grid-template-columns: 1fr;
+  }
+}

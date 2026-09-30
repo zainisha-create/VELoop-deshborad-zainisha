@@ -1,0 +1,446 @@
+.profileContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* 1. Identity Card */
+.identityCard {
+  position: relative;
+  background: var(--surface-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--surface-border-gold);
+  border-radius: var(--radius-xl);
+  padding: 30px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.cardAura {
+  position: absolute;
+  top: -60px;
+  left: 20%;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.15) 0%, transparent 70%);
+  filter: blur(35px);
+  pointer-events: none;
+}
+
+.identityContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.avatarGroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatarLarge {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  border: 3px solid rgba(245, 197, 24, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 900;
+  color: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.verifiedDot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #10B981;
+  border: 2px solid #161827;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.displayName {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.verifiedPill {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--emerald-light);
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.handle {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.tierPill {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.tierPill strong {
+  color: var(--gold-light);
+}
+
+.badgeShowcase {
+  flex-shrink: 0;
+}
+
+.toast {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: var(--emerald-light);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+
+/* 2. Stats Section */
+.statsSection {
+  width: 100%;
+}
+
+.sectionHeading {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.statBox {
+  background: var(--surface-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statLabel {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+}
+
+.statValue {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 900;
+  color: #FFFFFF;
+}
+
+.statValueGold {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--gold-light);
+}
+
+.statValueEmerald {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--emerald-light);
+}
+
+.statUnit {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.statSub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* 3. Perks Section */
+.perksSection {
+  width: 100%;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sectionSub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.roadmapBtn {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+.perksGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.perkCard {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.perkIcon {
+  font-size: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.perkCard strong {
+  font-size: 13px;
+  color: #FFFFFF;
+  display: block;
+}
+
+.perkCard p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* 4. Referral Program Card */
+.referralSection {
+  background: linear-gradient(135deg, rgba(30, 36, 68, 0.9), rgba(18, 22, 42, 0.95));
+  border: 1px solid rgba(245, 197, 24, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.referralLeft {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.refTag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--gold-light);
+  background: rgba(245, 197, 24, 0.12);
+  padding: 2px 8px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.referralTitle {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.referralDesc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  max-width: 480px;
+}
+
+.refLinkRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  max-width: 460px;
+}
+
+.refInput {
+  flex: 1;
+  background: #111322;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-full);
+  padding: 8px 16px;
+  color: #67E8F9;
+  font-size: 12px;
+  outline: none;
+}
+
+.copyBtn {
+  background: var(--gold-gradient);
+  color: #121424;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.referralRight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.refQrCode {
+  width: 108px;
+  height: 108px;
+  background: #FFFFFF;
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scanText {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* 5. Security & Preferences */
+.settingsSection {
+  width: 100%;
+}
+
+.settingsCard {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--surface-border-subtle);
+  gap: 16px;
+}
+
+.settingRow:last-child {
+  border-bottom: none;
+}
+
+.settingRow strong {
+  font-size: 14px;
+  color: #FFFFFF;
+  display: block;
+}
+
+.settingRow p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.toggleBtn {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  border: 1px solid var(--surface-border);
+  transition: all var(--transition-fast);
+}
+
+.toggleOn {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--emerald-light);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+@media (max-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .perksGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  .avatarGroup {
+    flex-direction: column;
+    text-align: center;
+  }
+  .nameRow {
+    justify-content: center;
+  }
+  .identityContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

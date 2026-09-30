@@ -1,0 +1,437 @@
+.heroSection {
+  position: relative;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.heroBackgroundAura {
+  position: absolute;
+  top: -40px;
+  left: 20%;
+  right: 20%;
+  height: 220px;
+  background: radial-gradient(ellipse, rgba(245, 197, 24, 0.08) 0%, rgba(147, 51, 234, 0.04) 60%, transparent 80%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.greetingHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.greetingTitle {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.greetingSubtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.levelTagPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 197, 24, 0.08);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.5px;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  box-shadow: 0 0 10px var(--gold-primary);
+  animation: pulseDotAnim 2s infinite ease-in-out;
+}
+
+@keyframes pulseDotAnim {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Main Level Card */
+.levelCard {
+  position: relative;
+  background: var(--surface-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--surface-border-gold);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 30px rgba(245, 197, 24, 0.08);
+  overflow: hidden;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.levelCard:hover {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55), 0 0 40px rgba(245, 197, 24, 0.12);
+}
+
+.cardGlowBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold-primary) 50%, transparent 100%);
+  opacity: 0.8;
+}
+
+.cardInner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 24px 28px;
+}
+
+.badgeColumn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressColumn {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.metricsTopRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.currentXPBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.labelWithTooltip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.metricLabel {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.xpNumberRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.xpBigValue {
+  font-family: var(--font-heading);
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(245, 197, 24, 0.3));
+}
+
+.xpUnit {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.targetBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  text-align: right;
+}
+
+.targetLabel {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.neededXPBadge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--surface-border);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.neededXPBadge strong {
+  color: #FFFFFF;
+}
+
+/* Progress Bar Component */
+.progressBarSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progressTrackWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 14px;
+}
+
+.progressTrack {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  background: #111322;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.progressFill {
+  position: relative;
+  height: 100%;
+  background: var(--gold-gradient);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 12px rgba(245, 197, 24, 0.5);
+  transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.progressShimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: goldShimmer 2.2s infinite linear;
+}
+
+.progressThumbPill {
+  position: absolute;
+  top: -8px;
+  transform: translateX(-50%);
+  background: var(--gold-gradient);
+  color: #121424;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 10px rgba(245, 197, 24, 0.5);
+  user-select: none;
+  white-space: nowrap;
+  transition: left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.thumbArrow {
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  background: #C99824;
+}
+
+.progressFooterLabels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  gap: 8px;
+}
+
+.startLevelLabel {
+  font-weight: 600;
+}
+
+.progressFractionLabel {
+  color: var(--text-secondary);
+}
+
+.progressFractionLabel strong {
+  color: var(--gold-light);
+}
+
+.endLevelLabel {
+  font-weight: 600;
+}
+
+/* Footer Actions */
+.heroFooterActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 28px;
+  background: rgba(18, 20, 36, 0.5);
+  border-top: 1px solid var(--surface-border-subtle);
+  flex-wrap: wrap;
+}
+
+.recommendationSnippet {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.recommendationSnippet strong {
+  color: var(--gold-primary);
+}
+
+.sparkleIcon {
+  width: 18px;
+  height: 18px;
+  color: var(--gold-primary);
+  flex-shrink: 0;
+}
+
+.ctaButtonGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.playHeroBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold-gradient);
+  color: #121424;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(245, 197, 24, 0.35);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.playHeroBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 197, 24, 0.5);
+}
+
+.playHeroBtn:active {
+  transform: translateY(0);
+}
+
+.btnIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.waysHeroBtn {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--surface-border);
+  transition: all var(--transition-fast);
+}
+
+.waysHeroBtn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+  .cardInner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    padding: 20px 16px;
+  }
+
+  .metricsTopRow {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .targetBlock {
+    align-items: center;
+    text-align: center;
+  }
+
+  .heroFooterActions {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .ctaButtonGroup {
+    flex-direction: column;
+  }
+
+  .playHeroBtn,
+  .waysHeroBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .progressFooterLabels {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .greetingTitle {
+    font-size: 21px;
+  }
+
+  .xpBigValue {
+    font-size: 28px;
+  }
+
+  .progressFooterLabels {
+    flex-direction: column;
+    gap: 2px;
+    text-align: center;
+  }
+}

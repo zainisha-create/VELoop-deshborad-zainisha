@@ -1,0 +1,376 @@
+.earnSection {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badgePill {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--emerald-light);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.heading {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subtext {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Recommendation Banner (Requirement #15 & #25) */
+.recommendationBanner {
+  background: linear-gradient(135deg, rgba(28, 33, 62, 0.85) 0%, rgba(19, 22, 40, 0.95) 100%);
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  flex-wrap: wrap;
+}
+
+.recIconCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(245, 197, 24, 0.15);
+  border: 1px solid rgba(245, 197, 24, 0.35);
+  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.recIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.recContent {
+  flex: 1;
+  min-width: 260px;
+}
+
+.recTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 2px;
+}
+
+.recSubtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.recCtaBtn {
+  background: var(--gold-gradient);
+  color: #121424;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 12px rgba(245, 197, 24, 0.3);
+  white-space: nowrap;
+  transition: transform var(--transition-fast);
+}
+
+.recCtaBtn:hover {
+  transform: translateY(-2px);
+}
+
+.toastNotice {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: var(--emerald-light);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  animation: fadeIn 200ms ease;
+}
+
+/* Filter Tabs */
+.filterTabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.filterBtn {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--surface-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.filterBtn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.filterBtnActive {
+  background: rgba(245, 197, 24, 0.15);
+  color: var(--gold-light);
+  border-color: rgba(245, 197, 24, 0.4);
+}
+
+/* 6 Grid Feature Cards */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.featureCard {
+  background: var(--surface-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  cursor: pointer;
+  transition: transform var(--transition-bounce), border-color var(--transition-normal), box-shadow var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.featureCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Color accents */
+.card_purple:hover {
+  border-color: rgba(168, 85, 247, 0.45);
+}
+
+.card_emerald:hover {
+  border-color: rgba(16, 185, 129, 0.45);
+}
+
+.card_gold:hover {
+  border-color: rgba(245, 197, 24, 0.45);
+}
+
+.card_blue:hover {
+  border-color: rgba(59, 130, 246, 0.45);
+}
+
+.card_cyan:hover {
+  border-color: rgba(6, 182, 212, 0.45);
+}
+
+.card_coral:hover {
+  border-color: rgba(244, 63, 94, 0.45);
+}
+
+.cardComingSoon {
+  opacity: 0.65;
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+}
+
+.cardComingSoon:hover {
+  transform: none;
+  border-color: var(--surface-border);
+}
+
+.cardClaimed {
+  opacity: 0.75;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.cardTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.featureIconBox {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_purple .featureIconBox {
+  background: rgba(168, 85, 247, 0.15);
+  color: var(--purple-light);
+}
+
+.card_emerald .featureIconBox {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--emerald-light);
+}
+
+.card_gold .featureIconBox {
+  background: rgba(245, 197, 24, 0.15);
+  color: var(--gold-primary);
+}
+
+.card_blue .featureIconBox {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--blue-light);
+}
+
+.card_cyan .featureIconBox {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--cyan-light);
+}
+
+.card_coral .featureIconBox {
+  background: rgba(244, 63, 94, 0.15);
+  color: var(--coral-accent);
+}
+
+.featureIconBox svg {
+  width: 20px;
+  height: 20px;
+}
+
+.rewardTag {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--gold-light);
+  background: rgba(245, 197, 24, 0.1);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.cardSubtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.cardDetails {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.cardActionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--surface-border-subtle);
+  padding-top: 10px;
+  margin-top: auto;
+}
+
+.ctaLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.cardComingSoon .ctaLabel {
+  color: var(--text-muted);
+}
+
+.cardClaimed .ctaLabel {
+  color: var(--emerald-light);
+}
+
+.arrowIcon {
+  width: 14px;
+  height: 14px;
+  color: var(--gold-primary);
+  transition: transform var(--transition-fast);
+}
+
+.featureCard:hover .arrowIcon {
+  transform: translateX(3px);
+}
+
+@media (max-width: 992px) {
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .recommendationBanner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .recCtaBtn {
+    width: 100%;
+    text-align: center;
+  }
+}

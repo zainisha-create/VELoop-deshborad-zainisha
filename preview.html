@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>VELOOP Rewards — Level-Up Dashboard</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- React 18 & Babel Standalone for Instant Local Preview -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      :root {
+        --bg-primary: #161827;
+        --bg-secondary: #111320;
+        --surface-base: #1C1F37;
+        --surface-elevated: #232746;
+        --surface-card: rgba(28, 31, 55, 0.78);
+        --surface-border: rgba(255, 255, 255, 0.08);
+        --surface-border-gold: rgba(245, 197, 24, 0.35);
+
+        --gold-primary: #F5C518;
+        --gold-light: #FFE071;
+        --gold-dark: #C99824;
+        --gold-gradient: linear-gradient(135deg, #FFE786 0%, #F5C518 50%, #C99824 100%);
+
+        --purple-accent: #9333EA;
+        --purple-light: #C084FC;
+        --blue-accent: #2563EB;
+        --blue-light: #60A5FA;
+        --emerald-accent: #10B981;
+        --emerald-light: #34D399;
+        --coral-accent: #F43F5E;
+
+        --text-primary: #FFFFFF;
+        --text-secondary: #94A3B8;
+        --text-muted: #64748B;
+        --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --font-heading: 'Montserrat', sans-serif;
+        --content-max-width: 1280px;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-family);
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        overflow-x: hidden;
+        background-image: 
+          radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.15), rgba(255, 255, 255, 0)),
+          radial-gradient(circle at 100% 30%, rgba(245, 197, 24, 0.04), transparent 50%),
+          radial-gradient(circle at 0% 70%, rgba(147, 51, 234, 0.05), transparent 50%);
+        background-attachment: fixed;
+        padding-bottom: 90px;
+      }
+
+      button {
+        font-family: inherit;
+        border: none;
+        background: none;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.2s ease;
+      }
+
+      .text-gold-gradient {
+        background: var(--gold-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(22, 24, 39, 0.88);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--surface-border);
+        height: 68px;
+        display: flex;
+        align-items: center;
+      }
+      .nav-container {
+        width: 100%;
+        max-width: var(--content-max-width);
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .logo-hex {
+        width: 34px;
+        height: 38px;
+        background: var(--gold-gradient);
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-heading);
+        font-weight: 900;
+        font-size: 18px;
+        color: #121424;
+      }
+      .brand-title {
+        font-family: var(--font-heading);
+        font-size: 16px;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+      }
+      .brand-sub {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--gold-primary);
+        display: block;
+      }
+      .desktop-nav {
+        display: flex;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 4px 6px;
+        border-radius: 999px;
+        border: 1px solid var(--surface-border);
+      }
+      .nav-btn {
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+      .nav-btn.active {
+        background: var(--gold-gradient);
+        color: #121424;
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .icon-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--surface-border);
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .icon-btn:hover {
+        color: var(--gold-primary);
+        border-color: rgba(245, 197, 24, 0.4);
+      }
+      .user-chip {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 12px 4px 4px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 999px;
+        border: 1px solid var(--surface-border);
+      }
+      .avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 800;
+      }
+
+      /* Main Layout */
+      .main-container {
+        width: 100%;
+        max-width: var(--content-max-width);
+        margin: 0 auto;
+        padding: 24px 20px 40px;
+      }
+      .top-grid {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+      .mid-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+
+      @media (max-width: 1100px) {
+        .top-grid, .mid-grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+      }
+      @media (max-width: 768px) {
+        .desktop-nav { display: none; }
+        .main-container { padding: 16px 14px 40px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect, useRef, useCallback } = React;
+
+      // Import our sound synthesizer
+      function useSound() {
+        const [isMuted, setIsMuted] = useState(false);
+        const ctxRef = useRef(null);
+
+        const getCtx = () => {
+          if (!ctxRef.current && (window.AudioContext || window.webkitAudioContext)) {
+            const AC = window.AudioContext || window.webkitAudioContext;
+            ctxRef.current = new AC();
+          }
+          if (ctxRef.current && ctxRef.current.state === 'suspended') ctxRef.current.resume();
+          return ctxRef.current;
+        };
+
+        const playCatch = () => {
+          if (isMuted) return;
+          try {
+            const ctx = getCtx();
+            if (!ctx) return;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.frequency.setValueAtTime(880, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(1320, ctx.currentTime + 0.08);
+            gain.gain.setValueAtTime(0.12, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.1);
+          } catch(e) {}
+        };
+
+        const playVictory = () => {
+          if (isMuted) return;
+          try {
+            const ctx = getCtx();
+            if (!ctx) return;
+            [659, 784, 1046].forEach((f, i) => {
+              const osc = ctx.createOscillator();
+              const gain = ctx.createGain();
+              osc.frequency.setValueAtTime(f, ctx.currentTime + i * 0.06);
+              gain.gain.setValueAtTime(0.12, ctx.currentTime + i * 0.06);
+              gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.06 + 0.2);
+              osc.connect(gain);
+              gain.connect(ctx.destination);
+              osc.start(ctx.currentTime + i * 0.06);
+              osc.stop(ctx.currentTime + i * 0.06 + 0.2);
+            });
+          } catch(e) {}
+        };
+
+        return { isMuted, toggleMute: () => setIsMuted(p => !p), playCatch, playVictory };
+      }
+
+      // Level Badge Component
+      function LevelBadge({ level = 5, size = 'md', status = 'current' }) {
+        const isLocked = status === 'locked';
+        const formatted = String(level).padStart(2, '0');
+        const dim = size === 'xl' ? { w: 120, h: 136 } : size === 'lg' ? { w: 90, h: 102 } : { w: 68, h: 78 };
+
+        return (
+          <div style={{ position: 'relative', width: dim.w, height: dim.h, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg viewBox="0 0 100 114" style={{ width: '100%', height: '100%', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.5))' }}>
+              <defs>
+                <linearGradient id={`gb_${level}`} x1="0" y1="0" x2="100" y2="114">
+                  <stop offset="0%" stopColor="#FFF2A3" />
+                  <stop offset="40%" stopColor="#F5C518" />
+                  <stop offset="80%" stopColor="#A6780C" />
+                </linearGradient>
+                <radialGradient id={`cr_${level}`} cx="50%" cy="40%" r="60%">
+                  <stop offset="0%" stopColor="#1E233D" />
+                  <stop offset="100%" stopColor="#0B0D17" />
+                </radialGradient>
+              </defs>
+              <path d="M50 4L94 28V84L50 110L6 84V28L50 4Z" fill={`url(#cr_${level})`} stroke={isLocked ? '#475569' : `url(#gb_${level})`} strokeWidth="3.5" />
+              <path d="M50 10L88 31V81L50 104L12 81V31L50 10Z" fill="none" stroke={isLocked ? 'rgba(255,255,255,0.06)' : 'rgba(245, 197, 24, 0.35)'} strokeWidth="1.2" />
+              {!isLocked && <path d="M50 14L52 19L57 19.5L53.5 23L54.5 28L50 25.5L45.5 28L46.5 23L43 19.5L48 19L50 14Z" fill="#F5C518" />}
+            </svg>
+            <div style={{ position: 'absolute', textAlign: 'center', pointerEvents: 'none' }}>
+              {isLocked ? (
+                <div style={{ fontSize: '18px', color: '#94A3B8' }}>🔒</div>
+              ) : (
+                <>
+                  <div style={{ fontSize: size === 'xl' ? '12px' : '9px', fontWeight: 800, color: '#F8E1A3', letterSpacing: '1px' }}>LEVEL</div>
+                  <div style={{ fontSize: size === 'xl' ? '40px' : size === 'lg' ? '28px' : '22px', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>{formatted}</div>
+                </>
+              )}
+            </div>
+          </div>
+        );
+      }
+
+      // App Root
+      function App() {
+        const sound = useSound();
+        const [profile, setProfile] = useState({
+          username: "VeLooper",
+          currentLevel: 5,
+          levelTitle: "Momentum",
+          currentXP: 6420,
+          requiredXP: 8000,
+          baseLevelXP: 5000,
+          nextLevel: 6,
+          xpToNext: 1580,
+          progressPct: 80.25,
+          reward: { amount: 500, type: "VEs", gems: 25 },
+          attempts: 5
+        });
+
+        const [uiState, setUiState] = useState('normal'); // 'normal' | 'loading' | 'error' | 'empty'
+        const [gameActive, setGameActive] = useState(false);
+        const [gameFinishedScore, setGameFinishedScore] = useState(null);
+        const [showLevelUp, setShowLevelUp] = useState(false);
+        const [activities, setActivities] = useState([
+          { id: 1, title: "+20 XP Referral Bonus", time: "Today, 10:45 AM", type: "ref" },
+          { id: 2, title: "+50 XP Daily Mission Completed", time: "Today, 09:12 AM", type: "task" },
+          { id: 3, title: "+75 XP Mini Game Win", time: "Today, 08:30 AM", type: "game" },
+          { id: 4, title: "+10 VEs XP Catcher Reward", time: "Today, 07:50 AM", type: "ve" },
+          { id: 5, title: "+25 XP Streak Bonus", time: "Today, 07:20 AM", type: "streak" }
+        ]);
+
+        const addXP = (amount, title) => {
+          setProfile(prev => {
+            const nextXP = prev.currentXP + amount;
+            let nextLvl = prev.currentLevel;
+            let nextReq = prev.requiredXP;
+            let leveled = false;
+            if (nextXP >= prev.requiredXP) {
+              leveled = true;
+              nextLvl += 1;
+              nextReq = Math.round(prev.requiredXP * 1.5);
+              setShowLevelUp(true);
+              sound.playVictory();
+            }
+            const pct = Math.min(100, ((nextXP - prev.baseLevelXP) / (nextReq - prev.baseLevelXP)) * 100);
+            return {
+              ...prev,
+              currentXP: nextXP,
+              currentLevel: nextLvl,
+              nextLevel: nextLvl + 1,
+              requiredXP: nextReq,
+              xpToNext: Math.max(0, nextReq - nextXP),
+              progressPct: parseFloat(pct.toFixed(1))
+            };
+          });
+
+          setActivities(prev => [{ id: Date.now(), title: `+${amount} XP ${title}`, time: "Just now", type: "task" }, ...prev]);
+        };
+
+        return (
+          <div>
+            {/* Header */}
+            <header className="navbar">
+              <div className="nav-container">
+                <div className="brand">
+                  <div className="logo-hex">V</div>
+                  <div>
+                    <span className="brand-title">VELOOP</span>
+                    <span className="brand-sub">REWARDS</span>
+                  </div>
+                </div>
+
+                <nav className="desktop-nav">
+                  <button className="nav-btn">Home</button>
+                  <button className="nav-btn">Earn</button>
+                  <button className="nav-btn active">Rewards</button>
+                  <button className="nav-btn">Wallet</button>
+                  <button className="nav-btn">Profile</button>
+                </nav>
+
+                <div className="nav-actions">
+                  <button className="icon-btn" onClick={sound.toggleMute} title="Audio Toggle">
+                    {sound.isMuted ? '🔇' : '🔊'}
+                  </button>
+                  <div className="user-chip">
+                    <div className="avatar">VL</div>
+                    <span style={{ fontSize: '12px', fontWeight: 700 }}>{profile.username}</span>
+                  </div>
+                </div>
+              </div>
+            </header>
+
+            {/* Main Content */}
+            <main className="main-container">
+              {uiState === 'loading' ? (
+                <div style={{ textAlign: 'center', padding: '60px 0' }}>
+                  <div style={{ width: '100%', height: '140px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', marginBottom: '20px' }}></div>
+                  <div style={{ width: '100%', height: '80px', background: 'rgba(255,255,255,0.05)', borderRadius: '14px', marginBottom: '20px' }}></div>
+                  <div style={{ width: '100%', height: '200px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px' }}></div>
+                </div>
+              ) : uiState === 'error' ? (
+                <div style={{ textAlign: 'center', padding: '60px 20px', background: 'rgba(28,31,55,0.8)', borderRadius: '20px', maxWidth: '500px', margin: '40px auto' }}>
+                  <div style={{ fontSize: '40px', marginBottom: '12px' }}>⚠️</div>
+                  <h2 style={{ fontSize: '20px', marginBottom: '8px' }}>Unable to Load Level Progress</h2>
+                  <p style={{ color: '#94A3B8', fontSize: '14px', marginBottom: '20px' }}>We couldn't load your level information right now.</p>
+                  <button
+                    style={{ background: 'var(--gold-gradient)', color: '#121424', padding: '10px 24px', borderRadius: '999px', fontWeight: 800 }}
+                    onClick={() => setUiState('normal')}
+                  >
+                    Try Again
+                  </button>
+                </div>
+              ) : (
+                <>
+                  {/* Top Grid: Hero & Next Reward */}
+                  <div className="top-grid">
+                    {/* Hero Card */}
+                    <div style={{ background: 'var(--surface-card)', border: '1px solid var(--surface-border-gold)', borderRadius: '24px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '18px', boxShadow: '0 16px 40px rgba(0,0,0,0.5)' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div>
+                          <h1 style={{ fontSize: '24px', fontWeight: 900 }}>
+                            Good Morning, <span className="text-gold-gradient">{profile.username}!</span>
+                          </h1>
+                          <p style={{ color: '#94A3B8', fontSize: '13px' }}>Level up your journey and unlock epic rewards every day.</p>
+                        </div>
+                        <div style={{ background: 'rgba(245,197,24,0.1)', border: '1px solid rgba(245,197,24,0.3)', padding: '4px 12px', borderRadius: '999px', fontSize: '11px', fontWeight: 700, color: '#FFE071' }}>
+                          Tier {profile.currentLevel} • {profile.levelTitle}
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+                        <LevelBadge level={profile.currentLevel} size="lg" status="current" />
+                        <div style={{ flex: 1 }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
+                            <div>
+                              <span style={{ fontSize: '11px', color: '#64748B', fontWeight: 700, letterSpacing: '1px' }}>CURRENT XP</span>
+                              <div style={{ fontSize: '32px', fontWeight: 900 }} className="text-gold-gradient">
+                                {profile.currentXP.toLocaleString()} <span style={{ fontSize: '16px' }}>XP</span>
+                              </div>
+                            </div>
+                            <div style={{ textAlign: 'right' }}>
+                              <span style={{ fontSize: '11px', color: '#64748B', fontWeight: 700 }}>TO REACH LEVEL 0{profile.nextLevel}</span>
+                              <div style={{ fontSize: '13px', color: '#FFFFFF', fontWeight: 700 }}>
+                                {profile.xpToNext.toLocaleString()} XP remaining
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Progress Track */}
+                          <div style={{ width: '100%', height: '12px', background: '#111322', borderRadius: '999px', overflow: 'hidden', position: 'relative', border: '1px solid rgba(255,255,255,0.06)' }}>
+                            <div style={{ width: `${profile.progressPct}%`, height: '100%', background: 'var(--gold-gradient)', borderRadius: '999px', transition: 'width 0.6s ease' }}></div>
+                          </div>
+
+                          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#64748B', marginTop: '6px' }}>
+                            <span>Level 0{profile.currentLevel}</span>
+                            <span style={{ color: '#FFE071', fontWeight: 700 }}>{profile.progressPct}% Completed</span>
+                            <span>Level 0{profile.nextLevel} ({profile.requiredXP.toLocaleString()} XP)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Next Reward Card */}
+                    <div style={{ background: 'linear-gradient(135deg, rgba(30,34,60,0.85), rgba(22,24,43,0.95))', border: '1px solid rgba(245,197,24,0.3)', borderRadius: '24px', padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '1px', color: '#FFE071' }}>NEXT LEVEL REWARD</span>
+                        <span style={{ fontSize: '11px', background: 'rgba(255,255,255,0.05)', padding: '3px 8px', borderRadius: '4px', color: '#94A3B8' }}>🔒 Locked</span>
+                      </div>
+
+                      <div style={{ margin: '14px 0' }}>
+                        <h2 style={{ fontSize: '26px', fontWeight: 900, color: '#FFFFFF' }}>+500 VEs <span style={{ fontSize: '13px', color: '#C084FC' }}>+25 Gems</span></h2>
+                        <p style={{ fontSize: '13px', color: '#94A3B8', marginTop: '4px' }}>Reach Level 0{profile.nextLevel} to claim your reward vault.</p>
+                      </div>
+
+                      <button
+                        style={{ background: 'var(--gold-gradient)', color: '#121424', padding: '10px 18px', borderRadius: '999px', fontWeight: 800, fontSize: '13px', width: 'fit-content' }}
+                        onClick={() => setShowLevelUp(true)}
+                      >
+                        Inspect Rewards →
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Today's Boost Stats (3 in a row) */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px', marginBottom: '24px' }}>
+                    <div style={{ background: 'var(--surface-card)', border: '1px solid var(--surface-border)', borderRadius: '16px', padding: '16px' }}>
+                      <span style={{ fontSize: '12px', color: '#94A3B8' }}>⭐ XP Earned Today</span>
+                      <div style={{ fontSize: '24px', fontWeight: 900, marginTop: '4px' }}>215 <span style={{ fontSize: '13px', color: '#64748B' }}>XP</span></div>
+                    </div>
+
+                    <div style={{ background: 'var(--surface-card)', border: '1px solid var(--surface-border)', borderRadius: '16px', padding: '16px' }}>
+                      <span style={{ fontSize: '12px', color: '#94A3B8' }}>📋 Tasks Done</span>
+                      <div style={{ fontSize: '24px', fontWeight: 900, marginTop: '4px' }}>4 <span style={{ fontSize: '13px', color: '#64748B' }}>/ 8</span></div>
+                    </div>
+
+                    <div style={{ background: 'var(--surface-card)', border: '1px solid var(--surface-border)', borderRadius: '16px', padding: '16px' }}>
+                      <span style={{ fontSize: '12px', color: '#94A3B8' }}>🔥 Streak</span>
+                      <div style={{ fontSize: '24px', fontWeight: 900, marginTop: '4px' }}>7 <span style={{ fontSize: '13px', color: '#F43F5E' }}>Days (2X Multiplier)</span></div>
+                    </div>
+                  </div>
+
+                  {/* Level Roadmap */}
+                  <div style={{ background: 'var(--surface-card)', border: '1px solid var(--surface-border)', borderRadius: '24px', padding: '24px', marginBottom: '24px' }}>
+                    <h3 style={{ fontSize: '16px', fontWeight: 800, marginBottom: '16px' }}>Level Progression Roadmap</h3>
+                    <div style={{ display: 'flex', gap: '20px', overflowX: 'auto', paddingBottom: '10px' }}>
+                      {[1, 2, 3, 4, 5, 6, 7, 8].map(lvl => {
+                        const status = lvl < profile.currentLevel ? 'completed' : lvl === profile.currentLevel ? 'current' : lvl === profile.nextLevel ? 'next' : 'locked';
+                        return (
+                          <div key={lvl} style={{ minWidth: '110px', textAlign: 'center', background: lvl === profile.currentLevel ? 'rgba(245,197,24,0.06)' : 'transparent', padding: '10px', borderRadius: '12px' }}>
+                            <LevelBadge level={lvl} size="md" status={status} />
+                            <div style={{ fontSize: '12px', fontWeight: 700, marginTop: '8px' }}>Level 0{lvl}</div>
+                            <div style={{ fontSize: '10px', color: '#94A3B8' }}>{status.toUpperCase()}</div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Mid Grid: Mini-Game & Recent Activity */}
+                  <div className="mid-grid">
+                    {/* Game Preview Card */}
+                    <div style={{ background: 'linear-gradient(135deg, rgba(22,28,54,0.9), rgba(17,20,36,0.95))', border: '1px solid rgba(59,130,246,0.3)', borderRadius: '24px', padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <div>
+                        <span style={{ fontSize: '11px', fontWeight: 800, color: '#60A5FA' }}>ARCADE CHALLENGE • 20 SECONDS</span>
+                        <h3 style={{ fontSize: '22px', fontWeight: 900, margin: '8px 0' }}>XP Catcher Arcade</h3>
+                        <p style={{ fontSize: '13px', color: '#94A3B8' }}>Catch falling XP orbs & VE coins! Score high to earn up to +30 XP directly into your account.</p>
+                      </div>
+
+                      <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <button
+                          style={{ background: 'linear-gradient(135deg, #3B82F6, #2563EB)', color: '#FFFFFF', padding: '10px 22px', borderRadius: '999px', fontWeight: 800, fontSize: '13px' }}
+                          onClick={() => setGameActive(true)}
+                        >
+                          Play Now 🎮
+                        </button>
+                        <span style={{ fontSize: '12px', color: '#94A3B8' }}>{profile.attempts}/5 attempts left</span>
+                      </div>
+                    </div>
+
+                    {/* XP Activity Card */}
+                    <div style={{ background: 'var(--surface-card)', border: '1px solid var(--surface-border)', borderRadius: '24px', padding: '24px' }}>
+                      <h3 style={{ fontSize: '16px', fontWeight: 800, marginBottom: '14px' }}>Recent XP Activity</h3>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        {activities.slice(0, 5).map(act => (
+                          <div key={act.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '10px' }}>
+                            <span style={{ fontSize: '13px', fontWeight: 600 }}>{act.title}</span>
+                            <span style={{ fontSize: '11px', color: '#64748B' }}>{act.time}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 6 Earning Feature Cards */}
+                  <div style={{ marginTop: '20px' }}>
+                    <h3 style={{ fontSize: '16px', fontWeight: 800, marginBottom: '14px' }}>Earn More XP & Rewards</h3>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+                      {[
+                        { title: 'Watch & Earn', sub: 'Watch sponsor clips', xp: 50, action: 'Watch' },
+                        { title: 'Daily Tasks', sub: 'Complete 4 activities', xp: 30, action: 'Claim' },
+                        { title: 'Refer & Earn', sub: 'Invite friends & colleagues', xp: 100, action: 'Invite' },
+                        { title: 'XP Catcher', sub: 'Catch falling orbs & coins', xp: 25, action: 'Play', isGame: true },
+                        { title: 'Mini Games', sub: 'New arcades coming soon', xp: 75, comingSoon: true },
+                        { title: 'Streak Bonus', sub: 'Day 7 streak active', xp: 25, action: 'Claim' }
+                      ].map((card, i) => (
+                        <div key={i} style={{ background: 'var(--surface-card)', border: '1px solid var(--surface-border)', borderRadius: '16px', padding: '18px', opacity: card.comingSoon ? 0.65 : 1 }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                            <strong style={{ fontSize: '15px' }}>{card.title}</strong>
+                            <span style={{ fontSize: '11px', fontWeight: 800, color: '#FFE071' }}>+{card.xp} XP</span>
+                          </div>
+                          <p style={{ fontSize: '12px', color: '#94A3B8', marginBottom: '14px' }}>{card.sub}</p>
+                          <button
+                            style={{ fontSize: '12px', fontWeight: 700, color: card.comingSoon ? '#64748B' : '#F5C518' }}
+                            disabled={card.comingSoon}
+                            onClick={() => {
+                              if (card.isGame) setGameActive(true);
+                              else if (!card.comingSoon) addXP(card.xp, card.title);
+                            }}
+                          >
+                            {card.comingSoon ? 'Coming Soon' : `${card.action} →`}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+            </main>
+
+            {/* Playable Mini Game Overlay */}
+            {gameActive && (
+              <div style={{ position: 'fixed', inset: 0, background: 'rgba(10,12,22,0.92)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
+                <div style={{ width: '100%', maxWidth: '440px', background: '#111320', borderRadius: '24px', border: '1px solid rgba(245,197,24,0.3)', overflow: 'hidden', padding: '20px' }}>
+                  <GamePlayComponent
+                    sound={sound}
+                    onFinish={(score) => {
+                      setGameActive(false);
+                      setGameFinishedScore(score);
+                      addXP(score >= 80 ? 30 : 20, 'XP Catcher Game');
+                    }}
+                    onClose={() => setGameActive(false)}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Game Result Modal */}
+            {gameFinishedScore !== null && (
+              <div style={{ position: 'fixed', inset: 0, background: 'rgba(10,12,22,0.92)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
+                <div style={{ width: '100%', maxWidth: '420px', background: '#161827', borderRadius: '24px', border: '1px solid rgba(245,197,24,0.4)', padding: '28px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '48px', marginBottom: '8px' }}>⭐</div>
+                  <h2 style={{ fontSize: '24px', fontWeight: 900 }}>CHALLENGE COMPLETE!</h2>
+                  <div style={{ fontSize: '13px', color: '#FFE071', marginBottom: '16px' }}>Outstanding!</div>
+                  <div style={{ fontSize: '42px', fontWeight: 900 }} className="text-gold-gradient">{gameFinishedScore} PTS</div>
+                  <p style={{ color: '#94A3B8', fontSize: '13px', margin: '14px 0' }}>Earned +30 XP Experience & +12 VEs Reward!</p>
+                  <button
+                    style={{ background: 'var(--gold-gradient)', color: '#121424', padding: '12px 28px', borderRadius: '999px', fontWeight: 800, width: '100%' }}
+                    onClick={() => setGameFinishedScore(null)}
+                  >
+                    Back to Dashboard
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Level-Up Modal */}
+            {showLevelUp && (
+              <div style={{ position: 'fixed', inset: 0, background: 'rgba(10,12,22,0.94)', zIndex: 3000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
+                <div style={{ width: '100%', maxWidth: '440px', background: 'linear-gradient(180deg, #1A1D34, #121424)', border: '1px solid rgba(245,197,24,0.5)', borderRadius: '28px', padding: '32px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '12px', fontWeight: 800, letterSpacing: '2px', color: '#F5C518', marginBottom: '8px' }}>✨ MILESTONE UNLOCKED ✨</div>
+                  <h2 style={{ fontSize: '32px', fontWeight: 900, marginBottom: '16px' }} className="text-gold-gradient">LEVEL UP!</h2>
+                  <div style={{ margin: '16px 0' }}>
+                    <LevelBadge level={profile.nextLevel} size="xl" status="current" />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', margin: '20px 0' }}>
+                    <div style={{ background: 'rgba(245,197,24,0.1)', padding: '10px', borderRadius: '12px', border: '1px solid rgba(245,197,24,0.3)' }}>
+                      <div style={{ fontSize: '16px', fontWeight: 800 }}>+500 VEs</div>
+                      <div style={{ fontSize: '10px', color: '#94A3B8' }}>Wallet Balance</div>
+                    </div>
+                    <div style={{ background: 'rgba(147,51,234,0.1)', padding: '10px', borderRadius: '12px', border: '1px solid rgba(147,51,234,0.3)' }}>
+                      <div style={{ fontSize: '16px', fontWeight: 800 }}>+25 Gems</div>
+                      <div style={{ fontSize: '10px', color: '#94A3B8' }}>Premium Tokens</div>
+                    </div>
+                  </div>
+                  <button
+                    style={{ background: 'var(--gold-gradient)', color: '#121424', padding: '12px 28px', borderRadius: '999px', fontWeight: 900, width: '100%', fontSize: '15px' }}
+                    onClick={() => setShowLevelUp(false)}
+                  >
+                    Claim Rewards
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Reviewer Inspection Dev Bar */}
+            <div style={{ position: 'fixed', bottom: '16px', right: '16px', zIndex: 1200, background: '#1A1D34', padding: '8px 14px', borderRadius: '999px', border: '1px solid rgba(245,197,24,0.4)', display: 'flex', gap: '8px', alignItems: 'center' }}>
+              <span style={{ fontSize: '11px', color: '#94A3B8' }}>State:</span>
+              <button style={{ fontSize: '11px', color: uiState === 'normal' ? '#FFE071' : '#94A3B8' }} onClick={() => setUiState('normal')}>Normal</button>
+              <button style={{ fontSize: '11px', color: uiState === 'loading' ? '#FFE071' : '#94A3B8' }} onClick={() => setUiState('loading')}>Loading</button>
+              <button style={{ fontSize: '11px', color: uiState === 'error' ? '#FFE071' : '#94A3B8' }} onClick={() => setUiState('error')}>Error</button>
+              <button style={{ fontSize: '11px', color: '#F5C518', fontWeight: 800 }} onClick={() => addXP(500, 'Test Bonus')}>+500 XP</button>
+            </div>
+          </div>
+        );
+      }
+
+      // Interactive Game Play Component
+      function GamePlayComponent({ sound, onFinish, onClose }) {
+        const [score, setScore] = useState(0);
+        const [time, setTime] = useState(20);
+        const [catcherX, setCatcherX] = useState(150);
+        const [items, setItems] = useState([]);
+        const arenaRef = useRef(null);
+
+        useEffect(() => {
+          const timer = setInterval(() => {
+            setTime(t => {
+              if (t <= 1) {
+                clearInterval(timer);
+                sound.playVictory();
+                onFinish(score);
+                return 0;
+              }
+              return t - 1;
+            });
+          }, 1000);
+          return () => clearInterval(timer);
+        }, [score, onFinish, sound]);
+
+        useEffect(() => {
+          const spawner = setInterval(() => {
+            const randX = Math.random() * 320;
+            const isGem = Math.random() > 0.8;
+            setItems(prev => [...prev, { id: Math.random(), x: randX, y: 0, isGem }]);
+          }, 500);
+
+          const mover = setInterval(() => {
+            setItems(prev => {
+              return prev.map(item => ({ ...item, y: item.y + 12 })).filter(item => {
+                if (item.y > 330 && item.y < 370 && Math.abs(item.x - catcherX) < 40) {
+                  sound.playCatch();
+                  setScore(s => s + (item.isGem ? 25 : 5));
+                  return false;
+                }
+                return item.y < 400;
+              });
+            });
+          }, 40);
+
+          return () => {
+            clearInterval(spawner);
+            clearInterval(mover);
+          };
+        }, [catcherX, sound]);
+
+        const handlePointer = (e) => {
+          if (!arenaRef.current) return;
+          const rect = arenaRef.current.getBoundingClientRect();
+          const x = Math.max(20, Math.min(320, e.clientX - rect.left));
+          setCatcherX(x);
+        };
+
+        return (
+          <div style={{ userSelect: 'none', touchAction: 'none' }} onPointerMove={handlePointer} ref={arenaRef}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+              <span style={{ fontWeight: 800 }}>XP CATCHER</span>
+              <span style={{ color: time <= 5 ? '#F43F5E' : '#FFE071', fontWeight: 800 }}>⏱ 00:{String(time).padStart(2, '0')}</span>
+              <button onClick={onClose} style={{ color: '#94A3B8' }}>✕</button>
+            </div>
+
+            <div style={{ position: 'relative', width: '360px', height: '360px', background: '#0D0F1A', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '16px', overflow: 'hidden' }}>
+              {items.map(item => (
+                <div
+                  key={item.id}
+                  style={{
+                    position: 'absolute',
+                    left: `${item.x}px`,
+                    top: `${item.y}px`,
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '50%',
+                    background: item.isGem ? 'cyan' : 'gold',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontWeight: 900,
+                    color: '#000',
+                    fontSize: '12px'
+                  }}
+                >
+                  {item.isGem ? '💎' : 'V'}
+                </div>
+              ))}
+
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '10px',
+                  left: `${catcherX - 35}px`,
+                  width: '70px',
+                  height: '26px',
+                  background: 'var(--gold-gradient)',
+                  borderRadius: '0 0 14px 14px',
+                  border: '2px solid #FFF'
+                }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px', fontWeight: 800 }}>
+              <span>SCORE: {score}</span>
+              <span style={{ color: '#94A3B8', fontSize: '12px' }}>Drag with touch or mouse</span>
+            </div>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+  </body>
+</html>

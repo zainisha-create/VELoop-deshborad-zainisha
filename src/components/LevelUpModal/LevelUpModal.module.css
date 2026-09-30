@@ -1,0 +1,288 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 22, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: overlayFadeIn 250ms ease;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalContainer {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  background: linear-gradient(180deg, #1A1D34 0%, #121424 100%);
+  border: 1px solid rgba(245, 197, 24, 0.45);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 50px rgba(245, 197, 24, 0.2);
+  overflow: hidden;
+  padding: 36px 28px;
+  animation: modalScaleUp 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalScaleUp {
+  from { opacity: 0; transform: scale(0.92) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.rayOfLight {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.22) 0%, rgba(147, 51, 234, 0.12) 50%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.starburst {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(255, 242, 163, 0.15) 0%, transparent 60%);
+  animation: pulseSubtle 3s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.celebrationContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.headerGroup {
+  margin-bottom: 20px;
+}
+
+.sparkleTag {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--gold-primary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.celebrateHeading {
+  font-family: var(--font-heading);
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  filter: drop-shadow(0 2px 10px rgba(245, 197, 24, 0.4));
+}
+
+.reachText {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.badgeShowcase {
+  position: relative;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badgeBackdropGlow {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.4) 0%, transparent 70%);
+  filter: blur(20px);
+  border-radius: 50%;
+  animation: glowPulse 2.5s infinite alternate;
+}
+
+.rewardCardsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.rewardPillCard {
+  background: rgba(22, 24, 39, 0.85);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.goldPill {
+  border-color: rgba(245, 197, 24, 0.35);
+  background: linear-gradient(135deg, rgba(245, 197, 24, 0.08) 0%, rgba(22, 24, 39, 0.9) 100%);
+}
+
+.purplePill {
+  border-color: rgba(147, 51, 234, 0.35);
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.08) 0%, rgba(22, 24, 39, 0.9) 100%);
+}
+
+.coinStackIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(245, 197, 24, 0.15);
+  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.coinStackIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.gemIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(147, 51, 234, 0.15);
+  color: var(--purple-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gemIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.rewardPillInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.rewardValue {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.rewardSub {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.perksListCard {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.perkItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #E2E8F0;
+  font-weight: 500;
+}
+
+.perkIcon {
+  font-size: 14px;
+}
+
+.claimButton {
+  width: 100%;
+  background: var(--gold-gradient);
+  color: #121424;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 900;
+  padding: 14px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 20px rgba(245, 197, 24, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.claimButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(245, 197, 24, 0.65);
+}
+
+.btnArrow {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 480px) {
+  .modalContainer {
+    padding: 28px 18px;
+  }
+
+  .celebrateHeading {
+    font-size: 28px;
+  }
+
+  .rewardCardsGrid {
+    grid-template-columns: 1fr;
+  }
+}

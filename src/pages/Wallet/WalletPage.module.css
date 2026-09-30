@@ -1,0 +1,543 @@
+.walletContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* 1. Portfolio Hero */
+.portfolioHero {
+  position: relative;
+  background: var(--surface-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--surface-border-gold);
+  border-radius: var(--radius-xl);
+  padding: 30px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.heroBackgroundAura {
+  position: absolute;
+  top: -60px;
+  right: -40px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.16) 0%, rgba(16, 185, 129, 0.08) 50%, transparent 75%);
+  filter: blur(35px);
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.balanceHeaderRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.balanceTag {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--gold-light);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.totalBalanceText {
+  font-family: var(--font-heading);
+  font-size: 38px;
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.currencyBadge {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.plPositive {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--emerald-light);
+  margin-top: 6px;
+}
+
+.walletPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--surface-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.walletPill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+.networkDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--emerald-accent);
+  box-shadow: 0 0 6px var(--emerald-accent);
+}
+
+.copyIcon {
+  font-size: 12px;
+}
+
+/* Action Buttons */
+.actionButtonsRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.actionBtnPrimary {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--surface-border);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.actionBtnPrimary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.actionBtnSecondary {
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: var(--blue-light);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.actionBtnSecondary:hover {
+  background: rgba(37, 99, 235, 0.25);
+  transform: translateY(-1px);
+}
+
+.actionBtnGold {
+  background: var(--gold-gradient);
+  color: #121424;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(245, 197, 24, 0.35);
+  transition: all var(--transition-fast);
+}
+
+.actionBtnGold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 197, 24, 0.5);
+}
+
+.toast {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: var(--emerald-light);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+
+/* 2. Assets Section */
+.assetsSection {
+  width: 100%;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.sectionHeading {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.assetsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.assetCard {
+  background: var(--surface-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.assetCard:hover {
+  transform: translateY(-2px);
+}
+
+.cardGold:hover { border-color: rgba(245, 197, 24, 0.4); }
+.cardEmerald:hover { border-color: rgba(16, 185, 129, 0.4); }
+.cardPurple:hover { border-color: rgba(147, 51, 234, 0.4); }
+
+.assetHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.assetIconGold {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  color: #121424;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.assetIconEmerald {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.assetIconPurple {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(147, 51, 234, 0.2);
+  border: 1px solid rgba(147, 51, 234, 0.4);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.assetName {
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.assetRate {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.assetAmount {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 900;
+  color: #FFFFFF;
+}
+
+.unit {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.assetFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--surface-border-subtle);
+  padding-top: 10px;
+  margin-top: auto;
+}
+
+.actionLink {
+  color: var(--gold-primary);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 3. Staking Vault Card */
+.stakingVaultCard {
+  background: linear-gradient(135deg, rgba(22, 28, 54, 0.95), rgba(18, 22, 42, 0.98));
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.vaultLeft {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vaultBadge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--emerald-light);
+  background: rgba(16, 185, 129, 0.12);
+  padding: 2px 8px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.vaultTitle {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.vaultDesc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  max-width: 500px;
+}
+
+.vaultMetrics {
+  display: flex;
+  gap: 20px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.metricLabel {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  display: block;
+}
+
+.metricValGold {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--gold-primary);
+}
+
+.metricVal {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.metricValEmerald {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--emerald-light);
+}
+
+.vaultRight {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 200px;
+}
+
+.claimYieldBtn {
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 11px 20px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.claimYieldBtn:disabled {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  box-shadow: none;
+}
+
+.stakeMoreBtn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--surface-border);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+}
+
+/* 4. Transactions Ledger */
+.ledgerSection {
+  width: 100%;
+}
+
+.ledgerCard {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 14px;
+}
+
+.txList {
+  display: flex;
+  flex-direction: column;
+}
+
+.txRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--surface-border-subtle);
+}
+
+.txRow:last-child {
+  border-bottom: none;
+}
+
+.txIconBox {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.txMeta {
+  flex: 1;
+  min-width: 0;
+}
+
+.txTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.txDate {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.txAmountGroup {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.amountPositive {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--emerald-light);
+}
+
+.amountNegative {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--coral-accent);
+}
+
+.usdText {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Modals */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 22, 0.88);
+  backdrop-filter: blur(16px);
+  z-index: 2500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modalBox {
+  background: #1A1D34;
+  border: 1px solid rgba(245, 197, 24, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .assetsGrid {
+    grid-template-columns: 1fr;
+  }
+}
