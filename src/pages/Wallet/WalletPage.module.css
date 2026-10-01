@@ -430,69 +430,6 @@
   border-radius: var(--radius-full);
 }
 
-/* 4. Transactions Ledger */
-.ledgerSection {
-  width: 100%;
-}
-
-.ledgerCard {
-  background: var(--surface-card);
-  border: 1px solid var(--surface-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-top: 14px;
-}
-
-.txList {
-  display: flex;
-  flex-direction: column;
-}
-
-.txRow {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 20px;
-  border-bottom: 1px solid var(--surface-border-subtle);
-}
-
-.txRow:last-child {
-  border-bottom: none;
-}
-
-.txIconBox {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-
-.txMeta {
-  flex: 1;
-  min-width: 0;
-}
-
-.txTitle {
-  font-size: 13px;
-  font-weight: 700;
-  color: #FFFFFF;
-}
-
-.txDate {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-.txAmountGroup {
-  text-align: right;
-  flex-shrink: 0;
-}
-
 .amountPositive {
   font-family: var(--font-heading);
   font-size: 14px;
@@ -539,5 +476,222 @@
 @media (max-width: 900px) {
   .assetsGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+.ledgerSection {
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 40px;
+}
+
+.ledgerCard {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.txList {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.txRow {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  min-width: 0;
+}
+
+.txIconBox {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+}
+
+.txMeta {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.txTitle {
+  font-size: 13px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.txDate {
+  font-size: 11px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.txAmountGroup {
+  flex: 0 0 auto;
+  min-width: 70px;
+  text-align: right;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 640px) {
+
+  .ledgerSection {
+    width: 100%;
+    padding-bottom: 50px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  .ledgerCard {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-top: 12px;
+  }
+
+  .txList {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .txRow {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+
+    column-gap: 10px;
+    row-gap: 5px;
+
+    padding: 14px 12px;
+
+    min-width: 0;
+  }
+
+  .txIconBox {
+    grid-column: 1;
+    grid-row: 1;
+
+    width: 34px;
+    height: 34px;
+    flex: none;
+
+    font-size: 14px;
+  }
+
+  .txMeta {
+    grid-column: 2;
+    grid-row: 1;
+
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .txTitle {
+    width: 100%;
+    font-size: 12px;
+    line-height: 1.4;
+
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .txDate {
+    width: 100%;
+    margin-top: 3px;
+
+    font-size: 10px;
+    line-height: 1.4;
+
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .txAmountGroup {
+    grid-column: 2;
+    grid-row: 2;
+
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    text-align: left;
+    gap: 8px;
+  }
+
+  .amountPositive,
+  .amountNegative {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .usdText {
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .txRow:last-child {
+    border-bottom: none;
+  }
+}
+
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@media (max-width: 380px) {
+
+  .ledgerSection {
+    padding-bottom: 60px;
+  }
+
+  .txRow {
+    padding: 13px 10px;
+    column-gap: 8px;
+  }
+
+  .txIconBox {
+    width: 32px;
+    height: 32px;
+  }
+
+  .txTitle {
+    font-size: 11px;
+  }
+
+  .txDate {
+    font-size: 9px;
+  }
+
+  .amountPositive,
+  .amountNegative {
+    font-size: 12px;
+  }
+
+  .usdText {
+    font-size: 9px;
   }
 }

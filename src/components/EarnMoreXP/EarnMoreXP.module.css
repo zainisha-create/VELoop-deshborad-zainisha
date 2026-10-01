@@ -1,6 +1,9 @@
 .earnSection {
   width: 100%;
+  max-width: 100%;
   margin-bottom: 32px;
+  box-sizing: border-box;
+  overflow: visible;
 }
 
 .sectionHeader {
@@ -16,6 +19,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
 
 .badgePill {
@@ -28,6 +32,7 @@
   border: 1px solid rgba(16, 185, 129, 0.25);
   padding: 3px 8px;
   border-radius: 4px;
+  white-space: nowrap;
 }
 
 .heading {
@@ -35,12 +40,14 @@
   font-weight: 800;
   letter-spacing: 0.5px;
   color: var(--text-primary);
+  line-height: 1.3;
 }
 
 .headerRight {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
 
 .subtext {
@@ -48,31 +55,51 @@
   color: var(--text-secondary);
 }
 
-/* Recommendation Banner (Requirement #15 & #25) */
+
+/* =========================================
+   RECOMMENDATION BANNER
+   ========================================= */
+
 .recommendationBanner {
-  background: linear-gradient(135deg, rgba(28, 33, 62, 0.85) 0%, rgba(19, 22, 40, 0.95) 100%);
+  width: 100%;
+  box-sizing: border-box;
+
+  background: linear-gradient(135deg,
+      rgba(28, 33, 62, 0.85) 0%,
+      rgba(19, 22, 40, 0.95) 100%);
+
   border: 1px solid rgba(245, 197, 24, 0.3);
   border-radius: var(--radius-lg);
+
   padding: 16px 22px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 18px;
   margin-bottom: 20px;
+
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
   flex-wrap: wrap;
 }
 
 .recIconCircle {
   width: 40px;
   height: 40px;
+
   border-radius: 50%;
+
   background: rgba(245, 197, 24, 0.15);
   border: 1px solid rgba(245, 197, 24, 0.35);
+
   color: var(--gold-primary);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   flex-shrink: 0;
 }
 
@@ -89,8 +116,9 @@
 .recTitle {
   font-size: 14px;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 2px;
+  line-height: 1.4;
 }
 
 .recSubtitle {
@@ -102,59 +130,106 @@
 .recCtaBtn {
   background: var(--gold-gradient);
   color: #121424;
+
   font-family: var(--font-heading);
   font-size: 13px;
   font-weight: 700;
+
   padding: 8px 18px;
+
   border-radius: var(--radius-full);
+
   box-shadow: 0 4px 12px rgba(245, 197, 24, 0.3);
+
   white-space: nowrap;
+
   transition: transform var(--transition-fast);
+
+  flex-shrink: 0;
 }
 
 .recCtaBtn:hover {
   transform: translateY(-2px);
 }
 
+
+/* =========================================
+   TOAST
+   ========================================= */
+
 .toastNotice {
+  max-width: 100%;
+  box-sizing: border-box;
+
   background: rgba(16, 185, 129, 0.15);
   border: 1px solid rgba(16, 185, 129, 0.35);
+
   color: var(--emerald-light);
+
   font-size: 13px;
   font-weight: 600;
+
   padding: 8px 16px;
+
   border-radius: var(--radius-full);
+
   margin-bottom: 16px;
+
   display: inline-flex;
   align-items: center;
   gap: 8px;
+
   animation: fadeIn 200ms ease;
 }
 
-/* Filter Tabs */
+
+/* =========================================
+   FILTER TABS
+   ========================================= */
+
 .filterTabs {
+  width: 100%;
+  max-width: 100%;
+
   display: flex;
   align-items: center;
   gap: 8px;
+
   margin-bottom: 16px;
+
   overflow-x: auto;
+  overflow-y: hidden;
+
   padding-bottom: 4px;
+
+  box-sizing: border-box;
+
+  scrollbar-width: thin;
 }
 
 .filterBtn {
+  flex: 0 0 auto;
+
   font-size: 12px;
   font-weight: 600;
+
   color: var(--text-secondary);
+
   background: rgba(255, 255, 255, 0.03);
+
   border: 1px solid var(--surface-border);
+
   padding: 6px 14px;
+
   border-radius: var(--radius-full);
+
   white-space: nowrap;
+
   transition: all var(--transition-fast);
 }
 
 .filterBtn:hover {
-  color: #FFFFFF;
+  color: #ffffff;
   background: rgba(255, 255, 255, 0.07);
 }
 
@@ -164,26 +239,50 @@
   border-color: rgba(245, 197, 24, 0.4);
 }
 
-/* 6 Grid Feature Cards */
+
+/* =========================================
+   FEATURE CARDS GRID
+   ========================================= */
+
 .featuresGrid {
+  width: 100%;
+  box-sizing: border-box;
+
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
   gap: 16px;
 }
 
 .featureCard {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+
   background: var(--surface-card);
+
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+
   border: 1px solid var(--surface-border);
+
   border-radius: var(--radius-md);
+
   padding: 18px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   gap: 14px;
+
   cursor: pointer;
-  transition: transform var(--transition-bounce), border-color var(--transition-normal), box-shadow var(--transition-normal);
+
+  transition:
+    transform var(--transition-bounce),
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
+
   box-shadow: var(--shadow-sm);
 }
 
@@ -192,7 +291,11 @@
   box-shadow: var(--shadow-md);
 }
 
-/* Color accents */
+
+/* =========================================
+   COLOR ACCENTS
+   ========================================= */
+
 .card_purple:hover {
   border-color: rgba(168, 85, 247, 0.45);
 }
@@ -217,6 +320,11 @@
   border-color: rgba(244, 63, 94, 0.45);
 }
 
+
+/* =========================================
+   CARD STATES
+   ========================================= */
+
 .cardComingSoon {
   opacity: 0.65;
   cursor: not-allowed;
@@ -233,19 +341,33 @@
   border-color: rgba(16, 185, 129, 0.3);
 }
 
+
+/* =========================================
+   CARD TOP
+   ========================================= */
+
 .cardTopRow {
+  width: 100%;
+  min-width: 0;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  gap: 10px;
 }
 
 .featureIconBox {
   width: 38px;
   height: 38px;
+
   border-radius: var(--radius-sm);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  flex-shrink: 0;
 }
 
 .card_purple .featureIconBox {
@@ -283,18 +405,39 @@
   height: 20px;
 }
 
+
+/* =========================================
+   REWARD TAG
+   ========================================= */
+
 .rewardTag {
+  max-width: 100%;
+
   font-family: var(--font-heading);
   font-size: 12px;
   font-weight: 800;
+
   color: var(--gold-light);
+
   background: rgba(245, 197, 24, 0.1);
+
   border: 1px solid rgba(245, 197, 24, 0.25);
+
   padding: 3px 8px;
+
   border-radius: var(--radius-full);
+
+  white-space: nowrap;
 }
 
+
+/* =========================================
+   CARD BODY
+   ========================================= */
+
 .cardBody {
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -303,35 +446,66 @@
 .cardTitle {
   font-size: 15px;
   font-weight: 700;
-  color: #FFFFFF;
+
+  color: #ffffff;
+
+  line-height: 1.35;
+
+  overflow-wrap: anywhere;
 }
 
 .cardSubtitle {
   font-size: 11px;
   color: var(--text-muted);
+
   font-weight: 600;
+
+  line-height: 1.4;
 }
 
 .cardDetails {
   font-size: 12px;
+
   color: var(--text-secondary);
+
   line-height: 1.4;
+
   margin-top: 4px;
+
+  overflow-wrap: anywhere;
 }
 
+
+/* =========================================
+   CARD ACTION
+   ========================================= */
+
 .cardActionRow {
+  width: 100%;
+  min-width: 0;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  gap: 10px;
+
   border-top: 1px solid var(--surface-border-subtle);
+
   padding-top: 10px;
+
   margin-top: auto;
 }
 
 .ctaLabel {
+  min-width: 0;
+
   font-size: 12px;
   font-weight: 700;
+
   color: var(--gold-light);
+
+  overflow-wrap: anywhere;
 }
 
 .cardComingSoon .ctaLabel {
@@ -345,7 +519,11 @@
 .arrowIcon {
   width: 14px;
   height: 14px;
+
   color: var(--gold-primary);
+
+  flex-shrink: 0;
+
   transition: transform var(--transition-fast);
 }
 
@@ -353,24 +531,353 @@
   transform: translateX(3px);
 }
 
-@media (max-width: 992px) {
-  .featuresGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 
-@media (max-width: 600px) {
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1100px) {
+
   .featuresGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .recommendationBanner {
+    gap: 14px;
+  }
+
+  .recContent {
+    min-width: 220px;
+  }
+}
+
+
+/* =========================================
+   TABLET / SMALL LAPTOP
+   ========================================= */
+
+@media (max-width: 800px) {
+
+  .sectionHeader {
+    align-items: flex-start;
+  }
+
+  .headerRight {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .subtext {
+    line-height: 1.4;
+  }
+
+  .recommendationBanner {
+    align-items: flex-start;
+  }
+
+  .recContent {
+    min-width: 0;
+  }
+
+  .recCtaBtn {
+    align-self: center;
+  }
+
+  .featuresGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .earnSection {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 28px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
+
+  /* Header */
+
+  .sectionHeader {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .titleGroup {
+    width: 100%;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .badgePill {
+    font-size: 9px;
+  }
+
+  .heading {
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .headerRight {
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .subtext {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+
+  /* Recommendation */
+
+  .recommendationBanner {
+    width: 100%;
+    padding: 16px;
+
     flex-direction: column;
     align-items: stretch;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+  }
+
+  .recIconCircle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .recIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .recContent {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .recTitle {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .recSubtitle {
+    font-size: 11px;
+    line-height: 1.5;
   }
 
   .recCtaBtn {
     width: 100%;
+    min-height: 40px;
+
+    padding: 10px 14px;
+
+    font-size: 12px;
+
     text-align: center;
+
+    box-sizing: border-box;
+  }
+
+
+  /* Toast */
+
+  .toastNotice {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 9px 12px;
+
+    font-size: 11px;
+
+    border-radius: 10px;
+
+    line-height: 1.4;
+  }
+
+
+  /* Filter */
+
+  .filterTabs {
+    width: 100%;
+
+    gap: 7px;
+
+    margin-bottom: 14px;
+
+    padding-bottom: 6px;
+
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+  }
+
+  .filterTabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filterBtn {
+    flex: 0 0 auto;
+
+    font-size: 11px;
+
+    padding: 7px 12px;
+  }
+
+
+  /* Cards */
+
+  .featuresGrid {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .featureCard {
+    width: 100%;
+    min-width: 0;
+
+    padding: 16px;
+
+    gap: 12px;
+
+    box-sizing: border-box;
+  }
+
+  .cardTopRow {
+    gap: 8px;
+  }
+
+  .featureIconBox {
+    width: 36px;
+    height: 36px;
+  }
+
+  .featureIconBox svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .rewardTag {
+    font-size: 11px;
+    padding: 3px 7px;
+  }
+
+  .cardTitle {
+    font-size: 14px;
+  }
+
+  .cardSubtitle {
+    font-size: 10px;
+  }
+
+  .cardDetails {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .cardActionRow {
+    padding-top: 9px;
+  }
+
+  .ctaLabel {
+    font-size: 11px;
+  }
+
+  .arrowIcon {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 380px) {
+
+  .earnSection {
+    padding-bottom: 40px;
+  }
+
+  .heading {
+    font-size: 15px;
+  }
+
+  .badgePill {
+    font-size: 8px;
+    padding: 3px 7px;
+  }
+
+  .subtext {
+    font-size: 10px;
+  }
+
+  .recommendationBanner {
+    padding: 14px;
+  }
+
+  .recTitle {
+    font-size: 12px;
+  }
+
+  .recSubtitle {
+    font-size: 10px;
+  }
+
+  .recCtaBtn {
+    min-height: 38px;
+    font-size: 11px;
+  }
+
+  .filterBtn {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  .featureCard {
+    padding: 14px;
+  }
+
+  .featureIconBox {
+    width: 34px;
+    height: 34px;
+  }
+
+  .rewardTag {
+    font-size: 10px;
+  }
+
+  .cardTitle {
+    font-size: 13px;
+  }
+
+  .cardDetails {
+    font-size: 10px;
+  }
+
+  .ctaLabel {
+    font-size: 10px;
   }
 }

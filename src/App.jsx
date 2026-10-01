@@ -39,7 +39,10 @@ export const App = () => {
   };
 
   return (
-    <div className="veloop-app" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div
+      className="veloop-app"
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
       {/* Persistent Top Navbar & Mobile Bottom Nav */}
       <Navbar
         profile={profile}
@@ -50,8 +53,19 @@ export const App = () => {
       />
 
       {/* Screen Render based on activeTab */}
-      <main style={{ flex: 1, width: '100%', maxWidth: 'var(--content-max-width)', margin: '0 auto', padding: '24px 20px 40px' }}>
-        {activeTab === 'home' && (
+      <main
+        style={{
+          flex: "1 0 auto",
+          width: "100%",
+          maxWidth: "var(--content-max-width)",
+          margin: "0 auto",
+          padding: "24px 20px 60px",
+          boxSizing: "border-box",
+          minHeight: 0,
+          overflow: "visible",
+        }}
+      >
+        {activeTab === "home" && (
           <HomePage
             profile={profile}
             onNavigate={setActiveTab}
@@ -60,7 +74,7 @@ export const App = () => {
           />
         )}
 
-        {activeTab === 'earn' && (
+        {activeTab === "earn" && (
           <EarnPage
             profile={profile}
             onAddXP={addXP}
@@ -69,7 +83,7 @@ export const App = () => {
           />
         )}
 
-        {activeTab === 'rewards' && (
+        {activeTab === "rewards" && (
           <LevelDashboard
             profile={profile}
             roadmap={roadmap}
@@ -85,7 +99,7 @@ export const App = () => {
           />
         )}
 
-        {activeTab === 'wallet' && (
+        {activeTab === "wallet" && (
           <WalletPage
             profile={profile}
             onAddXP={addXP}
@@ -93,11 +107,8 @@ export const App = () => {
           />
         )}
 
-        {activeTab === 'profile' && (
-          <ProfilePage
-            profile={profile}
-            onNavigate={setActiveTab}
-          />
+        {activeTab === "profile" && (
+          <ProfilePage profile={profile} onNavigate={setActiveTab} />
         )}
       </main>
 
